@@ -384,6 +384,8 @@ body.light .flip-switch {
 
   .menu-btn { display: block; }
 
+  .login-btn { padding: 10px 30px;}
+
   body.light .nav-links {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(15px);
