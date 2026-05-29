@@ -1,0 +1,128 @@
+.footer {
+  position: relative;
+  background: linear-gradient(120deg, #050510, #0a0015);
+  color: white;
+  padding: 60px 20px 20px;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  left: -100px;
+  background: radial-gradient(circle, #9333ea55, transparent 70%);
+  filter: blur(80px);
+}
+
+.footer::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  bottom: -100px;
+  right: -100px;
+  background: radial-gradient(circle, #06b6d455, transparent 70%);
+  filter: blur(80px);
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: auto;
+  gap: 40px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-brand h2 {
+  font-size: 1.8rem;
+  background: linear-gradient(135deg, #9333ea, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-brand p {
+  margin-top: 10px;
+  color: #aaa;
+  max-width: 300px;
+  line-height: 1.6;
+}
+
+.footer-links h4,
+.footer-social h4 {
+  margin-bottom: 10px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+  color: #ccc;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-links li:hover,
+body.light .footer-links li:hover {
+  color: #9333ea;
+  transform: translateX(5px);
+}
+
+.footer-social .icons {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.159);
+  border-radius: 50%;
+  transition: 0.3s;
+  backdrop-filter: blur(10px);
+  color: #f0fcfe;
+}
+
+.footer-social a:hover,
+body.light .footer-social a:hover {
+  background: linear-gradient(135deg, #9333ea, #06b6d4);
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 0 15px #9333ea;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: #777;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 15px;
+}
+
+body.light .footer-bottom {
+  border-top: 1px solid rgba(54, 54, 54, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-brand p {
+    max-width: 100%;
+  }
+}

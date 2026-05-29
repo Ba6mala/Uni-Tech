@@ -1,0 +1,267 @@
+.profile-page-wrapper {
+  min-height: 100vh;
+  color: #ffffff;
+  margin-bottom: 100px;
+}
+
+.profile-hero-header {
+  position: relative;
+  width: 100%;
+}
+
+.gamification-banner {
+  width: 100%;
+  height: 370px; 
+  position: relative;
+  overflow: hidden;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  opacity: 0.91;
+}
+
+.banner-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, #0a0a0f, transparent);
+}
+
+.profile-identity-card {
+  margin-top: -65px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.avatar-container {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #2d2d44, #1a1a2e); 
+  border: 5px solid #a855f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+
+.avatar-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s ease-in-out;
+}
+
+.avatar-container img[src*="cdn-icons-png"] {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+}
+
+.fallback-user-icon {
+  font-size: 4rem;
+  color: #4b5563;
+}
+
+.user-info-row {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-name-text {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+body.light .user-name-text {
+  color: var(--bl-colorT);
+  text-shadow: 0 2px 10px rgb(179 176 176 / 80%);
+}
+
+.user-points-badge {
+  background: rgba(26, 26, 46, 0.95);
+  padding: 6px 18px;
+  border-radius: 25px;
+  border: 1px solid #fbbf24;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fbbf24;
+  font-weight: bold;
+}
+
+.gold-star { font-size: 1rem; }
+
+.profile-main-body {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.progress-section-container { margin: 40px 0; }
+.percentage-text { color: #fbbf24; text-align: center; margin-bottom: 12px; font-weight: bold; }
+.progress-track-bar { height: 14px; background: #1e1e2e; border-radius: 20px; position: relative; }
+.progress-fill-active { height: 100%; background: linear-gradient(90deg, #a855f7, #ec4899); border-radius: 20px; position: relative; }
+.walking-avatar { position: absolute; right: -10px; top: -14px; font-size: 1.6rem; color: #fff; }
+.finish-line-flag { position: absolute; right: -10px; top: -14px; color: #ef4444; }
+
+body.light .walking-avatar {
+  color: #7c3aed;
+} 
+
+.section-main-title { color: #f472b6; text-align: center; font-size: 2.2rem; margin: 50px 0 30px; }
+.levels-grid-layout { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
+.level-box-item { text-align: center; width: 110px; transition: 0.3s; }
+.level-box-item.locked { opacity: 0.4; filter: grayscale(1); }
+
+.level-icon-circle { 
+  width: 80px; 
+  height: 80px; 
+  background: #1a1a2e; 
+  border-radius: 50%; 
+  margin: 0 auto 10px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  border: 2px solid #333;
+  transition: 0.3s;
+}
+
+.unlocked .level-icon-circle { 
+  border-color: #fbbf24; 
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.2); 
+}
+
+body.light .level-name-label {
+  color: #000;
+}
+
+.level-icon-circle img { 
+  width: 45px; 
+  height: 45px; 
+  transition: transform 0.3s ease;
+}
+
+.level-box-item:hover .level-icon-circle img {
+  transform: scale(1.1);
+}
+
+/* حاوية الميداليات الكبرى */
+.medals-container-box { 
+  background: rgba(255, 255, 255, 0.03); 
+  padding: 25px; 
+  border-radius: 25px; 
+  border: 1px solid rgba(255, 255, 255, 0.05); 
+  display: flex;
+  flex-direction: column; /* جعل العناصر تترتب تحت بعضها */
+  gap: 15px; /* مسافة متناسقة بين كل ميدالية وأخرى */
+}
+
+body.light .medals-container-box {
+  background: rgb(0 0 0 / 3%);
+  border: 1px solid rgb(0 0 0 / 5%);
+}
+
+/* كارت الميدالية الواحدة */
+.medal-card-item {
+  display: flex;
+  align-items: center; /* توازى الأيقونة والنص عمودياً */
+  gap: 20px; /* مسافة بين الأيقونة والنص */
+  padding: 15px 25px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.3s ease;
+  text-align: start; /* محاذاة النص للبداية ليكون مريحاً في القراءة */
+}
+
+/* تأثير حركي لطيف عند مرور الماوس فوق الميدالية */
+.medal-card-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateX(5px); /* إزاحة خفيفة تعطي لمسة تفاعلية */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* تعديل حركة الإزاحة لتتناسب مع اللغة العربية (RTL) تلقائياً */
+html[dir="rtl"] .medal-card-item:hover {
+  transform: translateX(-5px);
+}
+
+body.light .medal-card-item {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+body.light .medal-card-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* غلاف الأيقونة */
+.medal-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(253, 224, 71, 0.1); /* خلفية مضيئة خفيفة حول الميدالية الذهبية */
+  padding: 10px;
+  border-radius: 50%;
+  flex-shrink: 0; /* يمنع انضغاط الأيقونة إذا كان النص طويلاً */
+}
+
+/* الأيقونة نفسها */
+.medal-active-icon {
+  margin-bottom: 0 !important; /* إلغاء المارجن القديم لضبط الاستقامة */
+}
+
+/* نص الميدالية */
+.medal-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin: 0;
+}
+
+body.light .medal-text {
+  color: #1e293b;
+} 
+
+.no-medals-placeholder {
+  color: #4b5563;
+  text-align: center;
+  padding: 20px;
+}
+
+.progress-fill-active {
+  height: 100%;
+  background: #fbbf24;
+  position: relative;
+  transition: width 1s ease-in-out; 
+}
+
+
+.loading-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #030014;
+  color: #a855f7;
+  font-weight: bold;
+  font-size: 1.2rem; 
+}
+
+body.light .loading-container {
+  background: white;
+}

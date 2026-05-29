@@ -1,0 +1,288 @@
+/* ===== About Page ===== */
+.about-hero {
+  padding: 160px 10% 10% 120px;
+  text-align: center;
+  background: radial-gradient(circle at 10% 20%, rgba(147, 51, 234, 0.15), transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.15), transparent 40%);
+}
+
+.typing-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #fff;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #a855f7;
+  animation: typing 2.5s steps(13) forwards, blink 0.7s infinite;
+  margin-bottom: 20px;
+}
+
+body.light .typing-title,
+body.light .uni-box h3 {
+  color: var(--bl-colorT);
+}
+
+body.light .hero-subtitle,
+body.light .uni-box p {
+  color: #323647;
+}
+
+.hero-subtitle {
+  color: #d8d6d6;
+  font-size: 1.3rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero-subtitle span {
+  color: #6366f1;
+  font-weight: bold;
+}
+
+.university-section {
+  padding: 100px 10%;
+}
+
+.university-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+.uni-box {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 35px;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: 0.4s;
+}
+
+body.light .uni-box  {
+  background: rgba(255, 255, 255, 0.326);
+}
+
+.uni-box:hover {
+  transform: translateY(-10px);
+  border-color: #a855f7;
+  box-shadow: 0 20px 40px rgba(168, 85, 247, 0.3);
+}
+
+.uni-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.uni-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #fff;
+  padding: 5px;
+}
+
+.imageDr {
+  object-fit: cover;
+  padding: 2px;
+}
+
+.supervisor-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.uni-box h2 {
+  font-size: 16px;
+  color: #a855f7;
+  margin-bottom: 5px;
+}
+
+.uni-box h3 {
+  font-size: 22px;
+  color: #fff;
+}
+
+.uni-box p {
+  font-size: 15px;
+  color: #ccc;
+  line-height: 1.7;
+}
+
+
+/* Responsive */
+@media (max-width: 900px) {
+  .university-container {
+    grid-template-columns: 1fr;
+  }
+}
+/* Team Section */
+.team-section {
+    padding: 100px 10%;
+    text-align: center;
+}
+
+.badge {
+  background: #f1f0ff;
+  color: #6c5ce7;
+  padding: 8px 22px;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 25px;
+}
+
+body.light .badge {
+  background: #ffffff;
+}
+
+.team-header h2 {
+  font-size: 38px;
+  color: #d6dadb;
+  max-width: 600px;
+  margin: 0 auto 80px;
+  line-height: 1.3;
+}
+
+body.light .team-header h2 {
+  color: #696c6d;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 30px;
+  row-gap: 80px; 
+}
+
+
+.team-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 15px;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+  position: relative;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04); 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+}
+
+.team-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(108, 92, 231, 0.2);
+}
+
+.image-wrapper {
+    width: 90%;
+    height: 200px; 
+    margin-top: -40px; 
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 20px 60px rgba(108, 92, 231, 0.2); 
+    transition: all 0.4s ease-in-out;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 130%;
+    object-fit: cover;
+}
+
+.team-card:hover .image-wrapper {
+    transform: translateY(-12px);
+    box-shadow: 0 30px 70px rgba(108, 92, 231, 0.3);
+}
+
+.member-info h3 {
+    font-size: 18px;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+}
+
+.member-info p {
+    color: #555;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.icon-circle {
+    width: 38px;
+    height: 38px;
+    font-size: 14px;
+    background-color: #6c5ce7;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 10px 25px rgba(108, 92, 231, 0.35); 
+}
+
+.icon-circle:hover {
+    background-color: #5649c1;
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 12px 25px rgba(108, 92, 231, 0.45);
+}
+
+.team-card::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 60px;
+    bottom: 60px;
+    width: 15px;
+    background: linear-gradient(180deg, #e9e7ff 0%, #c5c0ff 100%);
+    border-radius: 20px;
+    z-index: -2;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .team-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 992px) {
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .image-wrapper { height: 230px; }
+    .team-header h2 { font-size: 32px; }
+}
+
+@media (max-width: 600px) {
+    .team-section { padding: 80px 5%; }
+    .team-grid { grid-template-columns: 1fr; }
+    .image-wrapper { height: 215px; width: 80%; }
+    .about-hero { padding: 120px 5% 60px; }
+    .university-section { padding: 60px 5%; }
+    .typing-title {font-size: 2.5rem;}
+    .hero-subtitle {font-size: 1rem;}
+}
+
+
+
+
+

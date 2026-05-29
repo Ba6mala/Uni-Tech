@@ -1,0 +1,45 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ✨ أنيميشن ناعم */
+body {
+  font-family: sans-serif;
+  transition: all 0.4s ease;
+}
+
+/* ☀️ Light */
+body {
+  background: linear-gradient(135deg, #f5f7fa, #e4e8f0);
+  color: #111;
+}
+
+/* 🌙 Dark */
+body.dark {
+  /* background: radial-gradient(circle at center, #1a012a, #000); */
+  /* background: radial-gradient(circle at 20% 20%, #6b21a8, transparent 40%),
+            radial-gradient(circle at 80% 80%, #4f46e5, transparent 40%),
+            #000; */
+  color: #fff;
+}
+
+/* 🧊 Glass Effect (احترافي) */
+.card {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+/* زرار */
+button {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
