@@ -140,7 +140,7 @@ body.light .show-category a:hover {
 @media (max-width: 1020px) {
   .categories-section {
     grid-template-columns: 1fr;
-    padding: 100px 50px;
+    padding: 100px 5px;
   }
 
   .tools-hero h2 {
