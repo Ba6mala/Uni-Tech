@@ -38,13 +38,14 @@ function App() {
     i18n.changeLanguage(lang);
   };
 
-  useEffect(() => {
+useEffect(() => {
     const savedLang = localStorage.getItem("lang");
     const savedTheme = localStorage.getItem("theme");
-    const token = localStorage.getItem("token"); // جلب التوكن أولاً
 
     const fetchPreferences = async () => {
-      // ✋ شرط ذكي: لو مفيش توكن، حط الإعدادات الافتراضية واقفل الدالة فوراً من غير ما تكلم السيرفر
+      const token = localStorage.getItem("token"); // بنجيب التوكن جوه الدالة مباشرة عشان نضمن آخر تحديث
+
+      // لو مفيش توكن، حط الإعدادات الافتراضية واقفل الدالة
       if (!token) {
         applySettings(savedLang || "en", savedTheme || "dark");
         return;
@@ -55,18 +56,16 @@ function App() {
           "https://final-project-tan-alpha.vercel.app/api/users/preferences",
           {
             headers: {
-              Authorization: `Bearer ${token}`, // استخدام المتغير هنا
+              Authorization: `Bearer ${token}`,
             },
           }
         );
 
-        // تأكدي إن الرد سليم قبل تحويله لـ JSON لضمان عدم حدوث شاشة بيضاء
         if (!res.ok) {
           throw new Error("Failed to fetch preferences");
         }
 
         const data = await res.json();
-
         const lang = data?.language || savedLang || "en";
         const theme = data?.theme || savedTheme || "dark";
 
@@ -77,7 +76,20 @@ function App() {
       }
     };
 
+    // 1. شغل الدالة أول ما الموقع يفتح عادي
     fetchPreferences();
+
+    // 2. 💡 الحل السحري: استمع لأي تغيير يحصل في الـ localStorage (أول ما ملف LoginSuccess يخزن التوكن، الدالة دي هتشتغل فوراً ثاني!)
+    const handleStorageChange = () => {
+      fetchPreferences();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    
+    // تنظيف الـ Listener عند إغلاق الـ Component
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
   }, []);
 
   useEffect(() => {
