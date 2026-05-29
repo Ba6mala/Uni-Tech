@@ -12,6 +12,7 @@ import CategoryDetails from "./components/Al_Tools/CategoryDatails";
 import Profile from "./components/Profile/Profile";
 import Competitions from "./components/Competitions/Competitions";
 import Leaderboard from "./components/Competitions/Leaderboard";
+import LoginSuccess from "./components/Login/LoginSuccess";
 import "./i18n";
 import "./index.css";
 
@@ -40,17 +41,29 @@ function App() {
   useEffect(() => {
     const savedLang = localStorage.getItem("lang");
     const savedTheme = localStorage.getItem("theme");
+    const token = localStorage.getItem("token"); // جلب التوكن أولاً
 
     const fetchPreferences = async () => {
+      // ✋ شرط ذكي: لو مفيش توكن، حط الإعدادات الافتراضية واقفل الدالة فوراً من غير ما تكلم السيرفر
+      if (!token) {
+        applySettings(savedLang || "en", savedTheme || "dark");
+        return;
+      }
+
       try {
         const res = await fetch(
           "https://final-project-tan-alpha.vercel.app/api/users/preferences",
           {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              Authorization: `Bearer ${token}`, // استخدام المتغير هنا
             },
           }
         );
+
+        // تأكدي إن الرد سليم قبل تحويله لـ JSON لضمان عدم حدوث شاشة بيضاء
+        if (!res.ok) {
+          throw new Error("Failed to fetch preferences");
+        }
 
         const data = await res.json();
 
@@ -60,7 +73,6 @@ function App() {
         applySettings(lang, theme);
       } catch (err) {
         console.log(err);
-
         applySettings(savedLang || "en", savedTheme || "dark");
       }
     };
@@ -81,6 +93,7 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/login-success" element={<LoginSuccess />} />
         <Route path="/contact" element={<Contact />} />
 
         <Route path="/posts" element={
