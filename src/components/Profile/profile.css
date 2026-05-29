@@ -159,15 +159,14 @@ body.light .level-name-label {
   transform: scale(1.1);
 }
 
-/* حاوية الميداليات الكبرى */
 .medals-container-box { 
   background: rgba(255, 255, 255, 0.03); 
   padding: 25px; 
   border-radius: 25px; 
   border: 1px solid rgba(255, 255, 255, 0.05); 
   display: flex;
-  flex-direction: column; /* جعل العناصر تترتب تحت بعضها */
-  gap: 15px; /* مسافة متناسقة بين كل ميدالية وأخرى */
+  flex-direction: column; 
+  gap: 15px;
 }
 
 body.light .medals-container-box {
@@ -175,27 +174,24 @@ body.light .medals-container-box {
   border: 1px solid rgb(0 0 0 / 5%);
 }
 
-/* كارت الميدالية الواحدة */
 .medal-card-item {
   display: flex;
-  align-items: center; /* توازى الأيقونة والنص عمودياً */
-  gap: 20px; /* مسافة بين الأيقونة والنص */
+  align-items: center;
+  gap: 20px; 
   padding: 15px 25px;
   background: rgba(255, 255, 255, 0.02);
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.03);
   transition: all 0.3s ease;
-  text-align: start; /* محاذاة النص للبداية ليكون مريحاً في القراءة */
+  text-align: start; 
 }
 
-/* تأثير حركي لطيف عند مرور الماوس فوق الميدالية */
 .medal-card-item:hover {
   background: rgba(255, 255, 255, 0.05);
-  transform: translateX(5px); /* إزاحة خفيفة تعطي لمسة تفاعلية */
+  transform: translateX(5px); 
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* تعديل حركة الإزاحة لتتناسب مع اللغة العربية (RTL) تلقائياً */
 html[dir="rtl"] .medal-card-item:hover {
   transform: translateX(-5px);
 }
@@ -209,23 +205,20 @@ body.light .medal-card-item:hover {
   background: rgba(0, 0, 0, 0.04);
 }
 
-/* غلاف الأيقونة */
 .medal-icon-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(253, 224, 71, 0.1); /* خلفية مضيئة خفيفة حول الميدالية الذهبية */
+  background: rgba(253, 224, 71, 0.1); 
   padding: 10px;
   border-radius: 50%;
-  flex-shrink: 0; /* يمنع انضغاط الأيقونة إذا كان النص طويلاً */
+  flex-shrink: 0; 
 }
 
-/* الأيقونة نفسها */
 .medal-active-icon {
-  margin-bottom: 0 !important; /* إلغاء المارجن القديم لضبط الاستقامة */
+  margin-bottom: 0 !important; 
 }
 
-/* نص الميدالية */
 .medal-text {
   font-size: 1.1rem;
   font-weight: 600;

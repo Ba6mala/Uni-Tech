@@ -107,25 +107,21 @@ const Profile = () => {
 
   const progressPercentage = Math.min((userData.points / MAX_POINTS) * 100, 100);
 
-  // دالة ذكية لتحويل الاسم العربي القادم من الـ API إلى الـ Key المناسب لملف الترجمة
   const getTranslatedMedal = (medalName) => {
     if (!medalName) return "";
 
-    // استخراج الرقم من النص القادم من الـ API (مثال: "مسابقة البرمجة 5" سيستخرج الرقم 5)
     const match = medalName.match(/\d+/); 
     
     if (match) {
-      const quizNumber = match[0]; // الحصول على الرقم المستخرج كـ String
-      const translationKey = `medals.quiz_${quizNumber}`; // بناء الـ Key مثل medals.quiz_5
+      const quizNumber = match[0]; 
+      const translationKey = `medals.quiz_${quizNumber}`; 
       
-      // التأكد من أن الـ Key موجود في ملف الترجمة لتجنب طباعته كـ نص عادي إذا لم يجد ترجمة
       const translated = t(translationKey);
       if (translated !== translationKey) {
         return translated;
       }
     }
 
-    // إذا فشل استخراج الرقم أو لم يجد مفتاح ترجمة مطابق، يعرض الاسم الأصلي القادم من الـ API
     return medalName;
   };
 
@@ -198,7 +194,6 @@ const Profile = () => {
                     <div className="medal-icon-wrapper">
                       <FaMedal className="medal-active-icon" style={{ color: '#FFD700', fontSize: '2rem' }} />
                     </div>
-                    {/* استدعاء الدالة الذكية لترجمة الميدالية بديناميكية */}
                     <p className="medal-text">{getTranslatedMedal(medal)}</p> 
                   </div>
                 ))

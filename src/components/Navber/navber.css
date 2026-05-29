@@ -364,7 +364,10 @@ body.light .flip-switch {
 }
 
 @media (max-width: 969px) {
-  .navbar { width: 100%; }
+  .navbar { 
+    width: 100%; 
+    padding: 18px;
+  }
   
   .nav-links {
     position: absolute;
