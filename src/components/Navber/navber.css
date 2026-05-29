@@ -384,8 +384,7 @@ body.light .flip-switch {
 
   .menu-btn { display: block; }
 
-  .login-btn { padding: 10px 30px;}
-
+  
   body.light .nav-links {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(15px);
@@ -396,6 +395,22 @@ body.light .flip-switch {
     border-top: 1px solid rgba(0,0,0,0.1);
     padding-top: 10px;
   }
+}
+
+@media (max-width: 400px) {
+  .logo-img {
+    width: 40px;
+    height: 33px;
+  }
+
+  .logo { font-size: 17px;}
+
+  .login-btn { 
+    padding: 10px 17px;
+    font-size: 14px;
+  }
+
+  
 }
 
 /* Homepage adjustments */
