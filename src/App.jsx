@@ -43,9 +43,8 @@ useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
 
     const fetchPreferences = async () => {
-      const token = localStorage.getItem("token"); // بنجيب التوكن جوه الدالة مباشرة عشان نضمن آخر تحديث
+      const token = localStorage.getItem("token"); 
 
-      // لو مفيش توكن، حط الإعدادات الافتراضية واقفل الدالة
       if (!token) {
         applySettings(savedLang || "en", savedTheme || "dark");
         return;
@@ -76,17 +75,14 @@ useEffect(() => {
       }
     };
 
-    // 1. شغل الدالة أول ما الموقع يفتح عادي
     fetchPreferences();
 
-    // 2. 💡 الحل السحري: استمع لأي تغيير يحصل في الـ localStorage (أول ما ملف LoginSuccess يخزن التوكن، الدالة دي هتشتغل فوراً ثاني!)
     const handleStorageChange = () => {
       fetchPreferences();
     };
 
     window.addEventListener("storage", handleStorageChange);
     
-    // تنظيف الـ Listener عند إغلاق الـ Component
     return () => {
       window.removeEventListener("storage", handleStorageChange);
     };
