@@ -112,10 +112,10 @@ export default function Signup() {
             onChange={(e) => setYear(e.target.value)}
           >
             <option value="">{t("signup.yearPlaceholder")}</option>
-            <option value="1">Year 1</option>
-            <option value="2">Year 2</option>
-            <option value="3">Year 3</option>
-            <option value="4">Year 4</option>
+            <option value="1">{t("signup.year1")}</option>
+            <option value="2">{t("signup.year2")}</option>
+            <option value="3">{t("signup.year3")}</option>
+            <option value="4">{t("signup.year4")}</option>
           </select>
         </div>
         <div className="flex-column">
