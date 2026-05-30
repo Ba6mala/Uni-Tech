@@ -73,17 +73,20 @@ const Navbar = () => {
     }
   };
 
-  // 2. useEffect لمراقبة التغييرات وجلب البيانات عند فتح الموقع أو تسجيل الدخول
   useEffect(() => {
     const handleUserUpdate = () => {
       const storedUser = JSON.parse(localStorage.getItem("user"));
+      const storedToken = localStorage.getItem("token"); 
+
       if (storedUser) {
-        const token = storedUser.token || storedUser.data?.token || storedUser.user?.token;
+        const token = storedUser.token || storedUser.data?.token || storedUser.user?.token || storedToken;
         if (token) {
           fetchNavbarProfile(token);
         } else {
           setUser(storedUser);
         }
+      } else if (storedToken) {
+        fetchNavbarProfile(storedToken);
       } else {
         setUser(null);
       }
