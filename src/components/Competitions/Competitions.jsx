@@ -132,17 +132,17 @@ const Competitions = () => {
       if (res.ok) {
         setResult(resultData);
 
-        const user = JSON.parse(localStorage.getItem("user"));
-        if (user) {
-          localStorage.setItem(
-            "user",
-            JSON.stringify({
-              ...user,
-              points: resultData.userPoints,
-              level: resultData.userLevel,
-            })
-          );
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+        if (storedUser) {
+          const updatedUser = {
+            ...storedUser,
+            points: resultData.userPoints !== undefined ? resultData.userPoints : resultData.points || storedUser.points,
+            level: resultData.userLevel || storedUser.level
+          };
+          
+          localStorage.setItem("user", JSON.stringify(updatedUser));
           window.dispatchEvent(new Event("storage"));
+          window.dispatchEvent(new Event("userUpdated"));
         }
       } else {
         setAlreadyPlayed(true);
@@ -220,7 +220,7 @@ const Competitions = () => {
             <div className="stats-grid">
               <div>
                 <span>{t("competitions.score")}</span>
-                <strong>{result.score}</strong>
+                <strong dir="rtl">{result.score}</strong>
               </div>
               <div>
                 <span>{t("competitions.total_points")}</span>

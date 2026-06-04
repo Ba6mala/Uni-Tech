@@ -44,6 +44,12 @@ useEffect(() => {
 
     const fetchPreferences = async () => {
       const token = localStorage.getItem("token"); 
+      const user = localStorage.getItem("user");
+
+      // 🔥 السطرين دول هما اللي هيكشفوا لنا اللغز حالاً في الـ Console
+      console.log("=== الكشف عن بيانات المتصفح عند فتح الموقع ===");
+      console.log("الـ Token الحالي في المتصفح هو:", token);
+      console.log("كائن الـ User الحالي في المتصفح هو:", user);
 
       if (!token) {
         applySettings(savedLang || "en", savedTheme || "dark");

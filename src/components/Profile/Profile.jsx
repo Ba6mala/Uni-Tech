@@ -73,16 +73,21 @@ const Profile = () => {
 
         if (response.ok) {
           const actualData = await response.json();
+          const cleanData = actualData.user || actualData;
           
           const updatedUser = {
-            username: actualData.username || actualData.name || "User",
-            points: actualData.points || 0,
-            medals: actualData.medals || [],
-            profilePic: actualData.profilePic || getDynamicAvatar(actualData.points)
+            _id: cleanData._id,
+            username: cleanData.username || cleanData.name || "User",
+            email: cleanData.email || "",
+            points: cleanData.points || 0,
+            medals: cleanData.medals || [],
+            profilePic: cleanData.profilePic || getDynamicAvatar(cleanData.points)
           };
 
           setUserData(updatedUser);
-          localStorage.setItem("user", JSON.stringify({ ...updatedUser, token }));
+          // دمج ذكي يحافظ على الـ token بدون مسحه أو إفساد الهيكل
+          localStorage.setItem("user", JSON.stringify({ ...updatedUser }));
+          window.dispatchEvent(new Event("userUpdated"));
         }
       } catch (err) {
         console.error("Fetch Error:", err);

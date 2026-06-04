@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import img1 from "../../assets/images/login1.jpeg";
 import img2 from "../../assets/images/login2.jpeg";
 import img3 from "../../assets/images/login3.jpeg";
@@ -22,7 +22,6 @@ export default function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -45,7 +44,6 @@ export default function Signup() {
     setLoading(true);
 
     try {
-      // API 
       const response = await fetch("https://final-project-tan-alpha.vercel.app/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -57,14 +55,32 @@ export default function Signup() {
       if (!response.ok) {
         throw new Error(data.message || t("signup.errors.failed"));
       }
-      localStorage.setItem("user", JSON.stringify(data));
-      localStorage.setItem("token", data.token);
-      window.dispatchEvent(new Event("storage"))
 
-      i18n.changeLanguage(data.user?.language || "en");
-      document.body.className = data.user?.theme || "light";
+      // 💡 توحيد الهيكل: استخراج بيانات المستخدم الصافية والتوكن
+      const token = data.token || data.data?.token;
+      const cleanUser = data.user || data.data?.user || data;
 
-      navigate("/");
+      const userObj = {
+        _id: cleanUser._id,
+        username: cleanUser.username || cleanUser.name || "User",
+        email: cleanUser.email || "",
+        year: cleanUser.year || year,
+        points: cleanUser.points || 0,
+        medals: cleanUser.medals || []
+      };
+
+      // تخزين البيانات بشكل موحد ومستقل
+      localStorage.setItem("user", JSON.stringify(userObj));
+      localStorage.setItem("token", token);
+      
+      window.dispatchEvent(new Event("storage"));
+      window.dispatchEvent(new Event("userUpdated"));
+
+      i18n.changeLanguage(cleanUser.language || "en");
+      document.body.className = cleanUser.theme || "light";
+
+      // التوجيه الكامل مع إنعاش المتصفح لضمان تحميل الحالة طازة
+      window.location.href = "/";
     } catch (err) {
       setError(err.message);
     } finally {

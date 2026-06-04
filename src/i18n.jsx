@@ -280,7 +280,7 @@ const resources = {
         of: "of",
         no_data: "No data available right now",
         success_default: "Submitted Successfully",
-        correct_answer_msg: "Well done! You are the smartest chick!",
+        correct_answer_msg: "I did well! You are awesome!",
         wrong_answer_msg: "Your answers are incorrect."
       },
 
