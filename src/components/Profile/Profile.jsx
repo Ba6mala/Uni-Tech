@@ -85,7 +85,6 @@ const Profile = () => {
           };
 
           setUserData(updatedUser);
-          // دمج ذكي يحافظ على الـ token بدون مسحه أو إفساد الهيكل
           localStorage.setItem("user", JSON.stringify({ ...updatedUser }));
           window.dispatchEvent(new Event("userUpdated"));
         }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img1 from "../../assets/images/login1.jpeg";
 import img2 from "../../assets/images/login2.jpeg";
 import img3 from "../../assets/images/login3.jpeg";
@@ -9,6 +9,7 @@ import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 import i18n from "../../i18n";
 import { useTranslation } from "react-i18next";
+import Swal from "sweetalert2"; 
 import "./signup.css";
 
 export default function Signup() {
@@ -22,6 +23,7 @@ export default function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,10 +31,13 @@ export default function Signup() {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+  
   const activeImage = images[index];
+  
   const handleSignup = async (e) => {
     e.preventDefault();
     setError("");
+    
     if (!username || !year || !email || !password || !confirmPassword) {
       setError(t("signup.errors.required"));
       return;
@@ -56,31 +61,26 @@ export default function Signup() {
         throw new Error(data.message || t("signup.errors.failed"));
       }
 
-      // 💡 توحيد الهيكل: استخراج بيانات المستخدم الصافية والتوكن
-      const token = data.token || data.data?.token;
-      const cleanUser = data.user || data.data?.user || data;
-
-      const userObj = {
-        _id: cleanUser._id,
-        username: cleanUser.username || cleanUser.name || "User",
-        email: cleanUser.email || "",
-        year: cleanUser.year || year,
-        points: cleanUser.points || 0,
-        medals: cleanUser.medals || []
-      };
-
-      // تخزين البيانات بشكل موحد ومستقل
-      localStorage.setItem("user", JSON.stringify(userObj));
-      localStorage.setItem("token", token);
-      
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
       window.dispatchEvent(new Event("storage"));
-      window.dispatchEvent(new Event("userUpdated"));
 
-      i18n.changeLanguage(cleanUser.language || "en");
-      document.body.className = cleanUser.theme || "light";
+      const isArabic = i18n.language === "ar";
+      
+      await Swal.fire({
+        title: isArabic ? "تهانينا! 🎉" : "Congratulations! 🎉",
+        text: isArabic 
+          ? "تم إنشاء حسابك بنجاح. برجاء تسجيل الدخول ." 
+          : "Account created successfully! Please login.",
+        icon: "success",
+        confirmButtonText: isArabic ? "الانتقال لتسجيل الدخول" : "Go to Login",
+        confirmButtonColor: "#6366f1",
+        background: document.body.className === "dark" ? "#1e1e2f" : "#fff", 
+        color: document.body.className === "dark" ? "#fff" : "#000",
+      });
+      
+      navigate("/login");
 
-      // التوجيه الكامل مع إنعاش المتصفح لضمان تحميل الحالة طازة
-      window.location.href = "/";
     } catch (err) {
       setError(err.message);
     } finally {
@@ -91,7 +91,7 @@ export default function Signup() {
   return (
     <section className="signup">
       <div className="box-images">
-        <img key={activeImage} src={activeImage} className="main-img slide" />
+        <img key={activeImage} src={activeImage} className="main-img slide" alt="Signup Visual" />
         <div className="bars">
           {images.map((_, i) => (
             <span
@@ -104,6 +104,7 @@ export default function Signup() {
       <form className="form" onSubmit={handleSignup}>
         <h3>{t("signup.title")}</h3>
         {error && <p style={{ color: "red" }}>{error}</p>}
+        
         <div className="flex-column">
           <label>{t("signup.name")}</label>
         </div>
@@ -117,6 +118,7 @@ export default function Signup() {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
+        
         <div className="flex-column">
           <label>{t("signup.year")}</label>
         </div>
@@ -134,6 +136,7 @@ export default function Signup() {
             <option value="4">{t("signup.year4")}</option>
           </select>
         </div>
+        
         <div className="flex-column">
           <label>{t("signup.email")}</label>
         </div>
@@ -147,6 +150,7 @@ export default function Signup() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
+        
         <div className="flex-row">
           <div className="flex-column">
             <label>{t("signup.password")}</label>
@@ -176,9 +180,11 @@ export default function Signup() {
             </div>
           </div>
         </div>
+        
         <button className="button-submit" type="submit" disabled={loading}>
           {loading ? t("signup.loading") : t("signup.button")}
         </button>
+        
         <div className="flex-row">
           <button
             type="button"
@@ -191,6 +197,7 @@ export default function Signup() {
             <FcGoogle size={20} /> {t("login.google")}
           </button>
         </div>
+        
         <p className="p">
           {t("signup.haveAccount")} <Link className="span" to="/login">{t("signup.login")}</Link>
         </p>

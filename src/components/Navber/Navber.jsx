@@ -57,10 +57,9 @@ const Navbar = () => {
         const actualData = await response.json();
         const storedUser = JSON.parse(localStorage.getItem("user")) || {};
         
-        // 💡 التعديل السحري: دمج كائن الـ user القديم بالكامل مع البيانات الجديدة دون مسح أي حقول فرعية تهم الصفحات الأخرى
         const updatedUser = {
-          ...storedUser, // الإبقاء على كافة البيانات المرجوعة من الساين أب أو الجوجل
-          ...(actualData.user || actualData), // دمج بيانات البروفايل المسترجعة سواء كانت داخل حقل user أو مباشرة
+          ...storedUser,
+          ...(actualData.user || actualData), 
           username: actualData.username || actualData.name || actualData.user?.username || storedUser.username || "User",
           points: actualData.points || actualData.user?.points || 0,
           profilePic: actualData.profilePic || actualData.user?.profilePic || getDynamicAvatar(actualData.points || actualData.user?.points),
